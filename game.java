@@ -6,7 +6,7 @@ public class game extends Canvas{
 
   public static void main(String[] args){
   
-    JFrame frame = new JFrame("My Drawing");
+    JFrame frame = new JFrame("My gamughghghgdfdfdfddfddffdfdfdfdfdfde");
     Canvas canvas = new game();
     canvas.setSize(400, 400);
     frame.add(canvas);

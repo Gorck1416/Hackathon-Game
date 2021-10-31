@@ -16,12 +16,13 @@ public class game extends Canvas implements Runnable{
 	private static final long serialVersionUID = 1L;
 	
 	public static final Toolkit tk = Toolkit.getDefaultToolkit();
-	public static final int WIDTH = (int) tk.getScreenSize().getWidth(), HEIGHT = (int) tk.getScreenSize().getHeight();
+	public static final int WIDTH = ((int) tk.getScreenSize().getWidth()), HEIGHT = ((int) tk.getScreenSize().getHeight());
   public static final int leftSide = game.WIDTH/4 + game.WIDTH/32, rightSide = leftSide + (game.WIDTH/2-game.WIDTH/12);
-  public static boolean flag = false;
+  public static boolean flag = false, hit = false;
+  public static int health = 3;
 	
 	private Thread thread;
-	private boolean running = false;
+	public boolean running = false;
   private update upd;
   
   public static Random r = new Random();
@@ -45,7 +46,7 @@ public class game extends Canvas implements Runnable{
     
     upd = new update();
     this.addKeyListener(new keyInput(upd));
-    upd.addObj(new player(WIDTH/2,HEIGHT - HEIGHT/8,Name.Player));
+    upd.addObj(new player(WIDTH/2,HEIGHT - HEIGHT/8,Name.Player, upd, this));
     upd.addObj(new wood(r.nextInt((rightSide - leftSide) + 1) + leftSide, 0, Name.wood));
     
     

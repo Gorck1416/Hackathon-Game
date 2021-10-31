@@ -20,11 +20,12 @@ public class keyInput extends KeyAdapter {
       if(tempOb.getName() == Name.Player){
         if(key == KeyEvent.VK_LEFT) {
           lP = true;
-          tempOb.setVelX(-2);
+          tempOb.setVelX(-15);
+          
         }
         if(key == KeyEvent.VK_RIGHT) {
           rP = true;
-          tempOb.setVelX(2);
+          tempOb.setVelX(15);
         }
       }
     }
@@ -41,13 +42,13 @@ public class keyInput extends KeyAdapter {
         if(key == KeyEvent.VK_LEFT) {
           lP = false;
           if(rP) {
-            tempOb.setVelX(2);
+            tempOb.setVelX(15);
           } else tempOb.setVelX(0);
         }
         if(key == KeyEvent.VK_RIGHT) {
           rP = false;
           if(lP) {
-            tempOb.setVelX(-2);
+            tempOb.setVelX(-15);
           } else tempOb.setVelX(0);
         }
       }

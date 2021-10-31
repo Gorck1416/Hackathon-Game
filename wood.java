@@ -1,37 +1,62 @@
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Color;
 import java.awt.Rectangle;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
+
 
 public class wood extends object {
+  
+  
+  private game Game;
+  private BufferedImage img = null;
 
-  public wood(int x, int y, Name name){
+  public wood(int x, int y, Name name, game Game){
     super(x,y,name);
+    this.Game = Game;
     
-    velY = 1;
+    velY = 20;
   }
 
   public Rectangle getBounds() {
-    return new Rectangle (x,y,32,32);
+    return new Rectangle (x,y,135,120);
   }
   
   public void tick() {
-    y += velY;
+   
+    if(game.score > 10 )velY *= (game.score/10);
+    y += velY ;
     
-    if(game.flag) x = game.r.nextInt((game.rightSide - game.leftSide) + 1) + game.leftSide;
+    int k = game.reset(y, game.HEIGHT);
+    if(game.flag) {
+      game.flag = false;
+      y = 0;
+      x = game.r.nextInt((game.rightSide - game.leftSide) + 1) + game.leftSide;
+    }
+    if(game.hit) {
+      game.hit = false;
+      y = 0;
+      x = game.r.nextInt((game.rightSide - game.leftSide) + 1) + game.leftSide;
+    }
     
-    y = game.reset(y, game.HEIGHT);
+    
+    
+   
   }
   
   public void render(Graphics g){
     
-    Graphics2D g2d = (Graphics2D) g;
     
-    g.setColor(Color.green);
-    g2d.draw(getBounds());
+    try{
+      img = ImageIO.read(new File("log.png"));
+    } catch (IOException e){
+      e.printStackTrace();
+    }
     
-    g.setColor(new Color(99, 76, 12));
-    g.fillRect(x,y,32,32);
+     g.drawImage(img, x-30, y, 200, 200, Game);
   
   }
 

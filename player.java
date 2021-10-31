@@ -1,7 +1,6 @@
 import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Rectangle;
-import javax.swing.ImageIcon;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
@@ -31,7 +30,7 @@ public class player extends object{
   }
   
   public Rectangle getBounds(){
-    return new Rectangle(x,y,32,32);
+    return new Rectangle(x,y,64,96);
   }
   
   private void collision(){
@@ -42,13 +41,15 @@ public class player extends object{
           if(getBounds().intersects(tempObj.getBounds())) {
             game.hit = true;
             game.health--;
-            System.out.println(game.health);
           }
+          if(game.health == 0) game.gState = game.STATE.End;
       }
     }
   }
   
   public void render(Graphics g){
+    
+    
     try{
       img = ImageIO.read(new File("person right.png"));
     } catch (IOException e){
@@ -56,7 +57,7 @@ public class player extends object{
     }
     
     
-    g.drawImage(img, x, y, 64, 64, Game);
+    g.drawImage(img, x-30, y-20, 128, 128, Game);
 
    }
     

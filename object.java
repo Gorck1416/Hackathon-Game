@@ -26,18 +26,6 @@ public abstract class object {
     this.y = y;
   }
   
-  public int getX(){
-    return x;
-  }
-  
-  public int getY(){
-    return y;
-  }
-  
-  public void setName(Name name){
-    this.name = name;
-  }
-  
   public Name getName(){
     return name;
   }
@@ -50,12 +38,6 @@ public abstract class object {
     this.velY = velY;
   }
   
-  public int getVelX(){
-    return velX;
-  }
-  
-  public int getVelY(){
-    return velY;
-  }
+
   
 }
